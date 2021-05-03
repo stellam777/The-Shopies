@@ -11,13 +11,23 @@ const SingleMovie = ({
   movieResults
 }) => {
   const nominateMovie = () => {
-    let updatedNominationList = [...nominationList, {title, year, poster, id}]
-    setNominationList(updatedNominationList)
+    if (nominationList.length < 5) {
+      let updatedNominationList = [...nominationList, {title, year, poster, id}]
+      setNominationList(updatedNominationList)
+      localStorage.setItem(
+        'Nominated Movies',
+        JSON.stringify(updatedNominationList)
+      )
+    }
   }
 
   const removeNominatedMovie = () => {
     let updatedNominationList = nominationList.filter(film => film.id !== id)
     setNominationList(updatedNominationList)
+    localStorage.setItem(
+      'Nominated Movies',
+      JSON.stringify(updatedNominationList)
+    )
   }
 
   return (

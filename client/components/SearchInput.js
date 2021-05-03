@@ -18,7 +18,9 @@ const SearchInput = ({
         value={movieSearchTitle}
         onKeyPress={onKeyPress}
       />
-      <button onClick={getMovies}>Submit</button>
+      <button onClick={getMovies} className="btn btn-info">
+        Submit
+      </button>
     </div>
   )
 }

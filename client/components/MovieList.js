@@ -1,9 +1,24 @@
 import React from 'react'
 import SingleMovie from './SingleMovie'
 
-const MovieList = ({movieResults, setNominationList, nominationList}) => {
+const MovieList = ({
+  movieResults,
+  setNominationList,
+  nominationList,
+  setMovieResults
+}) => {
+  const clearSearch = () => {
+    localStorage.setItem('Search Results', JSON.stringify([]))
+    setMovieResults([])
+  }
+
   return (
     <div className="col">
+      {movieResults.length > 0 && (
+        <button onClick={clearSearch} className="btn btn-warning">
+          Clear Search Results
+        </button>
+      )}
       {movieResults.map(movie => {
         return (
           <SingleMovie

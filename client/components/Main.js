@@ -22,11 +22,19 @@ const Main = () => {
 
   const getMovies = async () => {
     let {data} = await axios.get(
-      `http://www.omdbapi.com/?i=tt3896198&apikey=312d794d&s=${movieSearchTitle}`
+      `http://www.omdbapi.com/?i=tt3896198&apikey=312d794d&type="movie"&s=${movieSearchTitle}`
     )
     console.log('DATA', data)
     if (data.Response === 'True') {
-      setMovieResults(data.Search)
+      let filteredData = []
+      data.Search.filter(movie => {
+        let i = filteredData.findIndex(x => x.imdbID === movie.imdbID)
+        if (i <= -1) {
+          filteredData.push(movie)
+        }
+      })
+      setMovieResults(filteredData)
+      localStorage.setItem('Search Results', JSON.stringify(filteredData))
     }
     setMovieSearchTitle('')
   }
@@ -34,6 +42,9 @@ const Main = () => {
   useEffect(() => {
     if (localStorage.getItem('Nominated Movies') !== null) {
       setNominationList(JSON.parse(localStorage.getItem('Nominated Movies')))
+    }
+    if (localStorage.getItem('Search Results') !== null) {
+      setMovieResults(JSON.parse(localStorage.getItem('Search Results')))
     }
   }, [])
 
@@ -49,6 +60,7 @@ const Main = () => {
       <div className="row">
         <MovieList
           movieResults={movieResults}
+          setMovieResults={setMovieResults}
           setNominationList={setNominationList}
           nominationList={nominationList}
         />

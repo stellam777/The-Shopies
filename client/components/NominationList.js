@@ -2,14 +2,21 @@ import React from 'react'
 import SingleMovie from './SingleMovie'
 
 const NominationList = ({nominationList, setNominationList}) => {
-  console.log('NOM LIST', nominationList)
-  if (nominationList.length === 5) {
-    alert('FIVE BITCH')
+  const clearSearch = () => {
+    localStorage.setItem('Nominated Movies', JSON.stringify([]))
+    setNominationList([])
   }
 
   return (
     <div className="col">
-      <h2>NOM NOM</h2>
+      {nominationList.length > 0 && (
+        <button onClick={clearSearch} className="btn btn-warning">
+          Clear Nominations
+        </button>
+      )}
+      {nominationList.length > 0 && (
+        <div>Nominations: {nominationList.length}</div>
+      )}
       {nominationList.map(movie => {
         return (
           <SingleMovie
