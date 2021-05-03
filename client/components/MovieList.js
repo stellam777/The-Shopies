@@ -14,6 +14,7 @@ const MovieList = ({movieResults, setNominationList, nominationList}) => {
             id={movie.imdbID}
             setNominationList={setNominationList}
             nominationList={nominationList}
+            fromNomList={false}
           />
         )
       })}

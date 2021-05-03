@@ -6,50 +6,39 @@ const SingleMovie = ({
   poster,
   setNominationList,
   nominationList,
-  id
+  id,
+  fromNomList,
+  movieResults
 }) => {
-  let nominatedHelper = false
-  const [nominated, setNominated] = useState(false)
-  console.log('FROM SINGLE MOVIE', nominationList)
   const nominateMovie = () => {
-    nominatedHelper = !nominatedHelper
-    setNominated(!nominated)
-    console.log('FROM NOMINATED', nominatedHelper)
-    if (nominatedHelper) {
-      let updatedNominationList = [...nominationList, {title, year, poster, id}]
-      setNominationList(updatedNominationList)
-      console.log('hi from nom')
-    }
+    let updatedNominationList = [...nominationList, {title, year, poster, id}]
+    setNominationList(updatedNominationList)
   }
 
   const removeNominatedMovie = () => {
-    nominatedHelper = !!nominatedHelper
-    setNominated(!nominated)
-    console.log('REMOVE NOMINATED', nominatedHelper)
-    if (!nominatedHelper) {
-      let updatedNominationList = nominationList.filter(
-        movie => movie.id !== id
-      )
-      setNominationList(updatedNominationList)
-      console.log('hi from UNnom')
-    }
+    let updatedNominationList = nominationList.filter(film => film.id !== id)
+    setNominationList(updatedNominationList)
   }
 
-  console.log('NOM LIST AFTER BTN CLICK IN SINGLE MOVIE', nominationList)
-
   return (
-    <div>
+    <div className="parent">
       <img src={poster} />
       <h3>{title}</h3>
       <p>{year}</p>
-      {!nominated && (
-        <button className="btn btn-info" onClick={nominateMovie}>
+      {nominationList.some(movie => movie.id === id) &&
+        !fromNomList && <p>Currently Nominated</p>}
+      {!fromNomList && (
+        <button
+          className="btn btn-info"
+          disabled={nominationList.some(movie => movie.id === id)}
+          onClick={nominateMovie}
+        >
           Nominate
         </button>
       )}
-      {nominated && (
+      {fromNomList && (
         <button className="btn btn-info" onClick={removeNominatedMovie}>
-          Currently Nominated
+          Remove
         </button>
       )}
     </div>
