@@ -31,6 +31,12 @@ const Main = () => {
     setMovieSearchTitle('')
   }
 
+  useEffect(() => {
+    if (localStorage.getItem('Nominated Movies') !== null) {
+      setNominationList(JSON.parse(localStorage.getItem('Nominated Movies')))
+    }
+  }, [])
+
   return (
     <div className="container">
       <h1>Hello</h1>

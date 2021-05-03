@@ -15,6 +15,7 @@ const MovieList = ({movieResults, setNominationList, nominationList}) => {
             setNominationList={setNominationList}
             nominationList={nominationList}
             fromNomList={false}
+            movieResults={movieResults}
           />
         )
       })}
