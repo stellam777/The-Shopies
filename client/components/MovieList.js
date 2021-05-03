@@ -13,12 +13,19 @@ const MovieList = ({
   }
 
   return (
-    <div className="col">
-      {movieResults.length > 0 && (
-        <button onClick={clearSearch} className="btn btn-warning">
-          Clear Search Results
-        </button>
-      )}
+    <div className="col movie-list-container">
+      <div className="d-flex justify-content-between">
+        <div>
+          <h4>Search Results:</h4>
+        </div>
+        <div>
+          {movieResults.length > 0 && (
+            <button onClick={clearSearch} className="btn btn-sm btn-secondary">
+              Clear Search
+            </button>
+          )}
+        </div>
+      </div>
       {movieResults.map(movie => {
         return (
           <SingleMovie

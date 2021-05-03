@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap');
+
 body {
   font-family: sans-serif;
+  background-color: #e6e6ea;
+  color: #002366;
 }
 
 a {
@@ -15,7 +19,76 @@ nav a {
   margin: 1em;
 }
 
-form div {
+/* form div {
   margin: 1em;
   display: inline-block;
+} */
+
+.header {
+  background-color: #002366;
 }
+
+h4,
+h3 {
+  font-size: 24px;
+  font-family: 'Economica', sans-serif;
+  font-weight: 700;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 28px;
+}
+
+p {
+  font-size: 18px;
+}
+
+.movie-list-container {
+  background-color: #f4f4f8;
+  margin: 10px 10px 10px 0;
+  padding: 20px;
+  border-radius: 6px;
+  align-self: start;
+}
+
+.nom-list-container {
+  background-color: #f4f4f8;
+  margin: 10px 0 10px 10px;
+  padding: 20px;
+  border-radius: 6px;
+  align-self: start;
+}
+
+.coral-button {
+  background-color: #fe4a49;
+  color: white;
+}
+
+.navy-button {
+  background-color: #fe4a49;
+  color: white;
+}
+
+.navy-button {
+  background-color: #002366;
+  color: white;
+}
+
+.underline {
+  /* border-bottom: 1px solid #808080; */
+  border-top: 1px solid #808080;
+  /* padding-bottom: 25px; */
+  padding-top: 25px;
+}
+
+/* EF2D56 */
+
+/* --tart-orange: #fe4a49ff;
+--pacific-blue: #2ab7caff;
+--orange-yellow-crayola: #fed766ff;
+--gainsboro: #e6e6eaff;
+--ghost-white: #f4f4f8ff; */

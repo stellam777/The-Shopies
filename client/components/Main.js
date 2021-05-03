@@ -21,6 +21,7 @@ const Main = () => {
   }
 
   const getMovies = async () => {
+    const apiKey = process.env.API_KEY
     let {data} = await axios.get(
       `http://www.omdbapi.com/?i=tt3896198&apikey=312d794d&type="movie"&s=${movieSearchTitle}`
     )
@@ -47,17 +48,18 @@ const Main = () => {
       setMovieResults(JSON.parse(localStorage.getItem('Search Results')))
     }
   }, [])
+  //if clear results and have nom then don't clear nom
+  let test = !movieResults.length && nominationList.length
 
   return (
-    <div className="container">
-      <h1>Hello</h1>
+    <div className="container mt-4">
       <SearchInput
         changeHandler={changeHandler}
         onKeyPress={onKeyPress}
         getMovies={getMovies}
         movieSearchTitle={movieSearchTitle}
       />
-      <div className="row">
+      <div className="row ml-0 mr-0">
         <MovieList
           movieResults={movieResults}
           setMovieResults={setMovieResults}

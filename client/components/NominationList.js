@@ -8,15 +8,24 @@ const NominationList = ({nominationList, setNominationList}) => {
   }
 
   return (
-    <div className="col">
-      {nominationList.length > 0 && (
-        <button onClick={clearSearch} className="btn btn-warning">
-          Clear Nominations
-        </button>
-      )}
-      {nominationList.length > 0 && (
-        <div>Nominations: {nominationList.length}</div>
-      )}
+    <div className="col nom-list-container">
+      <div className="d-flex justify-content-between">
+        <div>
+          <h4>
+            Nominations:{' '}
+            {nominationList.length
+              ? nominationList.length
+              : 'Nothing currently nominated'}
+          </h4>
+        </div>
+        <div>
+          {nominationList.length > 0 && (
+            <button onClick={clearSearch} className="btn btn-sm btn-secondary">
+              Clear Nominations
+            </button>
+          )}
+        </div>
+      </div>
       {nominationList.map(movie => {
         return (
           <SingleMovie

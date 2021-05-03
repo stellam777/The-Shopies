@@ -31,26 +31,43 @@ const SingleMovie = ({
   }
 
   return (
-    <div className="parent">
-      <img src={poster} />
-      <h3>{title}</h3>
-      <p>{year}</p>
-      {nominationList.some(movie => movie.id === id) &&
-        !fromNomList && <p>Currently Nominated</p>}
-      {!fromNomList && (
-        <button
-          className="btn btn-info"
-          disabled={nominationList.some(movie => movie.id === id)}
-          onClick={nominateMovie}
-        >
-          Nominate
-        </button>
-      )}
-      {fromNomList && (
-        <button className="btn btn-info" onClick={removeNominatedMovie}>
-          Remove
-        </button>
-      )}
+    <div className="mt-4">
+      <div className="row mt-4 mb-2 underline">
+        <div className="col-4">
+          <img
+            src={poster}
+            style={{
+              objectFit: 'cover',
+              width: '125px',
+              height: '200px',
+              borderRadius: '5px'
+            }}
+          />
+        </div>
+        <div className="col-8 pl-0 pt-4">
+          <h3>{title}</h3>
+          <p>Release Year: {year}</p>
+          {nominationList.some(movie => movie.id === id) &&
+            !fromNomList && <p>Currently Nominated</p>}
+          {!fromNomList && (
+            <button
+              className="btn btn-sm coral-button"
+              disabled={nominationList.some(movie => movie.id === id)}
+              onClick={nominateMovie}
+            >
+              Nominate
+            </button>
+          )}
+          {fromNomList && (
+            <button
+              className="btn btn-sm coral-button"
+              onClick={removeNominatedMovie}
+            >
+              Remove
+            </button>
+          )}
+        </div>
+      </div>
     </div>
   )
 }
