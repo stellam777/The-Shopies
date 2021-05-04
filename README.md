@@ -1,6 +1,7 @@
 # The Shoppies: Movie awards for entrepreneurs
 
 This project is for the Shopify Fall 2021 Frontend Developer Internship
+Visit the deployed site here: https://the-shoppies-stella-martin.herokuapp.com/
 
 ## About the app
 
