@@ -1,11 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import {useToasts} from 'react-toast-notifications'
 
 import SearchInput from './SearchInput'
 import MovieList from './MovieList'
 import NominationList from './NominationList'
+import Banner from './Banner'
+import API_URL from '../../secrets.js'
 
 const Main = () => {
+  const {addToast} = useToasts()
   const [movieSearchTitle, setMovieSearchTitle] = useState('')
   const [movieResults, setMovieResults] = useState([])
   const [nominationList, setNominationList] = useState([])
@@ -21,11 +25,10 @@ const Main = () => {
   }
 
   const getMovies = async () => {
-    const apiKey = process.env.API_KEY
     let {data} = await axios.get(
-      `http://www.omdbapi.com/?i=tt3896198&apikey=312d794d&type="movie"&s=${movieSearchTitle}`
+      `${API_URL}&type="movie"&s=${movieSearchTitle}`
     )
-    console.log('DATA', data)
+
     if (data.Response === 'True') {
       let filteredData = []
       data.Search.filter(movie => {
@@ -36,6 +39,11 @@ const Main = () => {
       })
       setMovieResults(filteredData)
       localStorage.setItem('Search Results', JSON.stringify(filteredData))
+    }
+    if (data.Response === 'False') {
+      addToast('Movie not found, please refine your search and try again', {
+        appearance: 'error'
+      })
     }
     setMovieSearchTitle('')
   }
@@ -48,18 +56,17 @@ const Main = () => {
       setMovieResults(JSON.parse(localStorage.getItem('Search Results')))
     }
   }, [])
-  //if clear results and have nom then don't clear nom
-  let test = !movieResults.length && nominationList.length
 
   return (
     <div className="container mt-4">
+      {nominationList.length === 5 && <Banner />}
       <SearchInput
         changeHandler={changeHandler}
         onKeyPress={onKeyPress}
         getMovies={getMovies}
         movieSearchTitle={movieSearchTitle}
       />
-      <div className="row ml-0 mr-0">
+      <div className="row ml-0 mr-0 justify-content-center">
         <MovieList
           movieResults={movieResults}
           setMovieResults={setMovieResults}

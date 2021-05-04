@@ -1,13 +1,10 @@
 const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
-const compression = require('compression')
 const PORT = process.env.PORT || 8080
 const app = express()
-const dotenv = require('dotenv')
-module.exports = app
 
-dotenv.config({path: path.resolve(__dirname, '.env')})
+module.exports = app
 
 // This is a global Mocha hook, used for resource cleanup.
 // Otherwise, Mocha v4+ never quits after tests.
@@ -23,22 +20,11 @@ if (process.env.NODE_ENV === 'test') {
  * keys as environment variables, so that they can still be read by the
  * Node process on process.env
  */
-// if (process.env.NODE_ENV !== 'production') require('../secrets')
+if (process.env.NODE_ENV !== 'production') require('../secrets')
 
 const createApp = () => {
   // logging middleware
   app.use(morgan('dev'))
-
-  // body parsing middleware
-  app.use(express.json())
-  app.use(express.urlencoded({extended: true}))
-
-  // compression middleware
-  app.use(compression())
-
-  // auth and api routes
-  // app.use('/auth', require('./auth'))
-  // app.use('/api', require('./api'))
 
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))

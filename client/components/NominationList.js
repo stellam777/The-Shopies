@@ -8,19 +8,25 @@ const NominationList = ({nominationList, setNominationList}) => {
   }
 
   return (
-    <div className="col nom-list-container">
+    <div className="col-lg-5 nom-list-container">
       <div className="d-flex justify-content-between">
         <div>
           <h4>
-            Nominations:{' '}
-            {nominationList.length
-              ? nominationList.length
-              : 'Nothing currently nominated'}
+            Nominations:<span>
+              {' '}
+              {nominationList.length
+                ? nominationList.length
+                : 'Nothing currently nominated'}
+            </span>
           </h4>
         </div>
         <div>
           {nominationList.length > 0 && (
-            <button onClick={clearSearch} className="btn btn-sm btn-secondary">
+            <button
+              onClick={clearSearch}
+              type="button"
+              className="btn btn-sm btn-secondary"
+            >
               Clear Nominations
             </button>
           )}
