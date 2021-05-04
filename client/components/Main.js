@@ -26,7 +26,7 @@ const Main = () => {
 
   const getMovies = async () => {
     let {data} = await axios.get(
-      `${API_URL}&type="movie"&s=${movieSearchTitle}`
+      `https://www.omdbapi.com/?i=tt3896198&apikey=312d794d&type="movie"&s=${movieSearchTitle}`
     )
 
     if (data.Response === 'True') {
