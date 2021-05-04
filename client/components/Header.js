@@ -3,7 +3,7 @@ import logo from '../../public/shoppieslogo.png'
 
 const Header = () => {
   return (
-    <div className="p-1 header">
+    <div className="p-1 header d-flex">
       <img style={{paddingLeft: '10px'}} src={logo} />
     </div>
   )

@@ -13,7 +13,7 @@ const MovieList = ({
   }
 
   return (
-    <div className="col movie-list-container">
+    <div className="col-lg-5 movie-list-container">
       <div className="d-flex justify-content-between">
         <div>
           <h4>Search Results:</h4>
